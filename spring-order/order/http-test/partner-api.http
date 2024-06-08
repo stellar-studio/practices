@@ -1,0 +1,10 @@
+//curl -X POST http://localhost:8081/api/v1/partners -H "Content-Type: application/json" -d "{\"partnerName\": \"Partner 1\", \"businessNo\": \"123456123456\", \"email\": \"test@test.com\"}"
+
+POST http://localhost:8081/api/v1/partners/register
+Content-Type: application/json
+
+{
+  "partnerName": "Partner 1",
+  "businessNo": "123456123456",
+  "email": "test@test.com"
+}
