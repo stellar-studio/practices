@@ -13,6 +13,7 @@ import org.assertj.core.util.Lists;
 
 import java.util.List;
 
+@Getter
 @Entity
 @NoArgsConstructor
 @Table(name="items")
