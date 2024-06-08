@@ -1,13 +1,13 @@
 package dev.practice.order.domain.item;
 
-import dev.practice.order.domain.item.ItemOption;
-import dev.practice.order.domain.item.ItemOptionGroup;
+import dev.practice.order.domain.item.option.ItemOption;
+import dev.practice.order.domain.item.optionGroup.ItemOptionGroup;
 import lombok.Getter;
 import lombok.ToString;
 
 import java.util.List;
 
-public class ItemInfo {
+public class ItemDocument {
 
     @Getter
     @ToString
@@ -17,26 +17,26 @@ public class ItemInfo {
         private final String itemName;
         private final Long itemPrice;
         private final Item.Status status;
-        private final List<ItemOptionGroupInfo> itemOptionGroupList;
+        private final List<ItemOptionGroupDocument> itemOptionGroupList;
 
-        public Main(Item item, List<ItemOptionGroupInfo> itemOptionGroupInfoList) {
+        public Main(Item item, List<ItemOptionGroupDocument> itemOptionGroupDocumentList) {
             this.itemToken = item.getItemToken();
             this.partnerId = item.getPartnerId();
             this.itemName = item.getItemName();
             this.itemPrice = item.getItemPrice();
             this.status = item.getStatus();
-            this.itemOptionGroupList = itemOptionGroupInfoList;
+            this.itemOptionGroupList = itemOptionGroupDocumentList;
         }
     }
 
     @Getter
     @ToString
-    public static class ItemOptionGroupInfo {
+    public static class ItemOptionGroupDocument {
         private final Integer ordering;
         private final String itemOptionGroupName;
-        private final List<ItemOptionInfo> itemOptionList;
+        private final List<ItemOptionDocument> itemOptionList;
 
-        public ItemOptionGroupInfo(ItemOptionGroup itemOptionGroup, List<ItemOptionInfo> itemOptionList) {
+        public ItemOptionGroupDocument(ItemOptionGroup itemOptionGroup, List<ItemOptionDocument> itemOptionList) {
             this.ordering = itemOptionGroup.getOrdering();
             this.itemOptionGroupName = itemOptionGroup.getItemOptionGroupName();
             this.itemOptionList = itemOptionList;
@@ -45,12 +45,12 @@ public class ItemInfo {
 
     @Getter
     @ToString
-    public static class ItemOptionInfo {
+    public static class ItemOptionDocument {
         private final Integer ordering;
         private final String itemOptionName;
         private final Long itemOptionPrice;
 
-        public ItemOptionInfo(ItemOption itemOption) {
+        public ItemOptionDocument(ItemOption itemOption) {
             this.ordering = itemOption.getOrdering();
             this.itemOptionName = itemOption.getItemOptionName();
             this.itemOptionPrice = itemOption.getItemOptionPrice();

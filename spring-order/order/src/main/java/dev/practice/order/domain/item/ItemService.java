@@ -2,7 +2,7 @@ package dev.practice.order.domain.item;
 
 public interface ItemService {
     String registerItem(ItemCommand.RegisterItemRequest request, String partnerToken);
-    void changeOnSale(String itemToken);
-    void changeEndOfSale(String itemToken);
-    ItemInfo.Main retrieveItemInfo(String itemToken);
+    void changeStatusToOnSale(String itemToken);
+    void changeStatusToEndSale(String itemToken);
+    ItemDocument.Main retrieveItemDocument(String itemToken);
 }

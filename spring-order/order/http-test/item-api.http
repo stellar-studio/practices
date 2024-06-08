@@ -1,0 +1,135 @@
+### 아이템 등록
+### PartnerToken: 2f9adfd3389f45939abd48dc83eb4f3d
+POST http://localhost:8080/api/v1/items
+Content-Type: application/json
+
+{
+  "partnerToken": "{PARTNER_TOKEN_HERE}",
+  "itemName": "티셔츠",
+  "itemPrice": 30000,
+  "itemOptionGroupList": [
+    {
+      "ordering": "1",
+      "itemOptionGroupName": "사이즈",
+      "itemOptionList": [
+        {
+          "ordering": 1,
+          "itemOptionName": "SMALL",
+          "itemOptionPrice": 0
+        },
+        {
+          "ordering": 2,
+          "itemOptionName": "MEDIUM",
+          "itemOptionPrice": 0
+        },
+        {
+          "ordering": 3,
+          "itemOptionName": "LARGE",
+          "itemOptionPrice": 0
+        }
+      ]
+
+    },
+    {
+      "ordering": "2",
+      "itemOptionGroupName": "컬러",
+      "itemOptionList": [
+        {
+          "ordering": 1,
+          "itemOptionName": "RED",
+          "itemOptionPrice": 0
+        },
+        {
+          "ordering": 2,
+          "itemOptionName": "GOLD",
+          "itemOptionPrice": 1000
+        }
+      ]
+    }
+  ]
+}
+
+### 아이템 1 활성화
+### ItemToken: c694d7ffc7b8431f84162f320b2922ea
+POST http://localhost:8080/api/v1/items/change-status-to-on-sales
+Content-Type: application/json
+
+{
+  "itemToken": "{ITEM_TOKEN_HERE}"
+}
+
+### 아이템 등록 2
+### PartnerToken: 2f9adfd3389f45939abd48dc83eb4f3d
+POST http://localhost:8080/api/v1/items
+Content-Type: application/json
+
+{
+    "partnerToken": "{PARTNER_TOKEN_HERE}",
+    "itemName": "양말",
+    "itemPrice": 10000,
+    "itemOptionGroupList": [
+        {
+            "ordering": "1",
+            "itemOptionGroupName": "사이즈",
+            "itemOptionList": [
+                {
+                    "ordering": 1,
+                    "itemOptionName": "SMALL",
+                    "itemOptionPrice": 0
+                },
+                {
+                    "ordering": 2,
+                    "itemOptionName": "MEDIUM",
+                    "itemOptionPrice": 0
+                },
+                {
+                    "ordering": 3,
+                    "itemOptionName": "LARGE",
+                    "itemOptionPrice": 0
+                }
+            ]
+
+        },
+        {
+            "ordering": "2",
+            "itemOptionGroupName": "컬러",
+            "itemOptionList": [
+                {
+                    "ordering": 1,
+                    "itemOptionName": "RED",
+                    "itemOptionPrice": 0
+                },
+                {
+                    "ordering": 2,
+                    "itemOptionName": "BlUE",
+                    "itemOptionPrice": 1000
+                }
+            ]
+        }
+    ]
+}
+
+### 아이템 2 활성화
+### ItemToken: ca6a803cf613429f91e54fed79360153
+POST http://localhost:8080/api/v1/items/change-status-to-on-sales
+Content-Type: application/json
+
+{
+  "itemToken": "{ITEM_TOKEN_HERE}"
+}
+
+### 아이템 등록 3
+### PartnerToken: 2f9adfd3389f45939abd48dc83eb4f3d
+POST http://localhost:8080/api/v1/items
+Content-Type: application/json
+
+{
+  "partnerToken": "{PARTNER_TOKEN_HERE}",
+  "itemName": "양말",
+  "itemPrice": 10000
+}
+
+### 아이템 조회
+### ItemToken: c694d7ffc7b8431f84162f320b2922ea, ca6a803cf613429f91e54fed79360153, 334e1f4ba5c8468884b65f1cf2bc0d57
+GET http://localhost:8080/api/v1/items/{ITEM_TOKEN_HERE}
+Content-Type: application/json

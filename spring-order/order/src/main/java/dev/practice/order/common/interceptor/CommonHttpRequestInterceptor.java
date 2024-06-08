@@ -28,7 +28,7 @@ public class CommonHttpRequestInterceptor extends WebRequestHandlerInterceptorAd
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         String requestEventId = request.getHeader(HEADER_REQUEST_UUID_KEY);
-        if (StringUtils.isEmpty(requestEventId)) {
+        if (requestEventId.isBlank()) {
             requestEventId = UUID.randomUUID().toString();
         }
 

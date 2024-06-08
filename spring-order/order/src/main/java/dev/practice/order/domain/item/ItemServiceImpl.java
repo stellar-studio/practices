@@ -4,6 +4,7 @@ import dev.practice.order.domain.partner.PartnerReader;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
 @Service
@@ -12,55 +13,37 @@ public class ItemServiceImpl implements ItemService {
     private final PartnerReader partnerReader;
     private final ItemStore itemStore;
     private final ItemReader itemReader;
-    private final ItemOptionGroupStore itemOptionGroupStore;
-    private final ItemOptionStore itemOptionStore;
+    private  final ItemOptionSeriesFactory itemOptionSeriesFactory;
 
     @Override
-    public String registerItem(ItemCommand.RegisterItemRequest request, String partnerToken) {
-        // 1. get PartnerId (search by partnerToken)
+    @Transactional
+    public String registerItem(ItemCommand.RegisterItemRequest command, String partnerToken) {
         var partner = partnerReader.getPartner(partnerToken);
-        var partnerId = partner.getId();
-
-        // 2. item store (FK Root 이므로 item 저장이 가장 먼저 선행되어야함)
-        var initItem = request.toEntity(partnerId);
+        var initItem = command.toEntity(partner.getId());
         var item = itemStore.store(initItem);
-
-        // 3. itemOption, itemOptionGroup store (item FK를 가지므로 사전에 item 객체가 저장되어야만 함)
-        request.getItemOptionGroupRequestList().forEach(requestItemOptionGroup -> {
-            // 3-1. ItemOptionGroup store (ItemOption 을 저장하기 위해 선행되어야하여 먼저 store 하는 것)
-            var initItemOptionGroup = ItemOptionGroup.builder()
-                    .item(item)
-                    .ordering(requestItemOptionGroup.getOrdering())
-                    .itemOptionGroupName(requestItemOptionGroup.getItemOptionGroupName())
-                    .build();
-
-            // 3-2. ItemOption store
-            var itemOptionGroup = itemOptionGroupStore.store(initItemOptionGroup);
-            requestItemOptionGroup.getItemOptionRequestList().forEach(requestItemOption -> {
-                var initItemOption = ItemOption.builder()
-                        .itemOptionGroup(itemOptionGroup)
-                        .ordering(requestItemOption.getOrdering())
-                        .itemOptionName(requestItemOption.getItemOptionName())
-                        .itemOptionPrice(requestItemOption.getItemOptionPrice())
-                        .build();
-                itemOptionStore.store(initItemOption);
-            });
-        });
-
+        itemOptionSeriesFactory.store(command, item);
+        return item.getItemToken();
     }
 
     @Override
-    public void changeOnSale(String itemToken) {
-
+    public void changeStatusToOnSale(String itemToken) {
+        var item =itemReader.getItemBy(itemToken);
+        item.changeStatusToOnSales();
+        itemStore.store(item);
     }
 
     @Override
-    public void changeEndOfSale(String itemToken) {
-
+    public void changeStatusToEndSale(String itemToken) {
+        var item =itemReader.getItemBy(itemToken);
+        item.changeStatusToEndSales();
+        itemStore.store(item);
     }
 
     @Override
-    public ItemInfo.Main retrieveItemInfo(String itemToken) {
-        return null;
+    @Transactional(readOnly = true)
+    public ItemDocument.Main retrieveItemDocument(String itemToken) {
+        var item = itemReader.getItemBy(itemToken);
+        var itemOptionGroupDocumentList = itemReader.getItemOptionSeries(item);
+        return new ItemDocument.Main(item, itemOptionGroupDocumentList);
     }
 }

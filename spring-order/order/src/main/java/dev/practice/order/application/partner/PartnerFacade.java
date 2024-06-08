@@ -1,6 +1,6 @@
 package dev.practice.order.application.partner;
 
-import dev.practice.order.domain.notification.NotificatioService;
+import dev.practice.order.domain.notification.NotificationService;
 import dev.practice.order.domain.partner.PartnerCommand;
 import dev.practice.order.domain.partner.PartnerInfo;
 import dev.practice.order.domain.partner.PartnerService;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class PartnerFacade {
     private final PartnerService partnerService;
-    private final NotificatioService notificationService;
+    private final NotificationService notificationService;
 
     public PartnerInfo registerPartner(PartnerCommand command){
         // 아래서 partnerService.registerPartner()가 동일하게 나오는 이유는, Facade 패턴은 여러 기능을 묶어 실행하는 코드 단위의 MSA 패턴이기 때문이다.
