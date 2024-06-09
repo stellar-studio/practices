@@ -1,0 +1,11 @@
+### 선물하기 주문 결제 처리
+### OrderToken: 6987b6b814d649ceb9cb368e86cc4d6b
+POST http://localhost:8080/api/v1/gift-orders/payment-order
+Content-Type: application/json
+
+{
+  "orderToken": "{ORDER_TOKEN_HERE}",
+  "payMethod": "TOSS_PAY",
+  "amount": "41000",
+  "orderDescription": "선물하기 주문"
+}
