@@ -1,5 +1,7 @@
 ### 선물하기 등록
-POST http://localhost:18080/api/v1/gifts/
+### ItemToken1: c694d7ffc7b8431f84162f320b2922ea
+### ItemToken2: ca6a803cf613429f91e54fed79360153
+POST http://localhost:8081/api/v1/gifts
 Content-Type: application/json
 
 {
@@ -12,7 +14,7 @@ Content-Type: application/json
   "orderItemList": [
     {
       "orderCount": 1,
-      "itemToken": "itm_Ni4xehFRo2QdlAsv",
+      "itemToken": "{ITEM_TOKEN_HERE}",
       "itemName": "티셔츠",
       "itemPrice": "30000",
       "orderItemOptionGroupList": [
@@ -42,7 +44,7 @@ Content-Type: application/json
     },
     {
       "orderCount": 1,
-      "itemToken": "itm_AAGf16M3LuqiTOOv",
+      "itemToken": "{ITEM_TOKEN_HERE}",
       "itemName": "양말",
       "itemPrice": "10000",
       "orderItemOptionGroupList": [
@@ -74,11 +76,13 @@ Content-Type: application/json
 }
 
 ### 선물하기 결제중 상태로 변경
-POST http://localhost:18080/api/v1/gifts/gt_1mF8Py1k0yrnDSP85/payment-processing
+### GiftToken: gt_iNDqT2Q21BxARwCCS
+POST http://localhost:8081/api/v1/gifts/{GIFT_TOKEN_HERE}/payment-processing
 Content-Type: application/json
 
 ### 선물하기 수락 상태로 변경
-POST http://localhost:18080/api/v1/gifts/gt_1mF8Py1k0yrnDSP85/accept-gift
+### GiftToken: gt_iNDqT2Q21BxARwCCS
+POST http://localhost:8081/api/v1/gifts/{GIFT_TOKEN_HERE}/accept-gift
 Content-Type: application/json
 
 {
@@ -91,5 +95,6 @@ Content-Type: application/json
 }
 
 ### 선물하기 조회
-GET http://localhost:18080/api/v1/gifts/gt_PoN5w7udsGLS7l1qk
+### GiftToken: gt_iNDqT2Q21BxARwCCS
+GET http://localhost:8081/api/v1/gifts/{GIFT_TOKEN_HERE}
 Content-Type: application/json

@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RetrofitServiceRegistry {
 
-    @Value("${example.order.base-url}")
+    @Value("${env.domain.order.base-url}")
     private String baseUrl;
 
     @Bean

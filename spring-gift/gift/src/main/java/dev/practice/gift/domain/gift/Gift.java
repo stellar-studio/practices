@@ -7,7 +7,7 @@ import dev.practice.gift.domain.AbstractEntity;
 import lombok.*;
 import org.apache.commons.lang3.StringUtils;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.time.ZonedDateTime;
 
 
