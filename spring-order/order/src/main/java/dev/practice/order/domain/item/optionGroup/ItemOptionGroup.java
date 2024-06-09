@@ -1,5 +1,6 @@
 package dev.practice.order.domain.item.optionGroup;
 
+import com.google.common.collect.Lists;
 import dev.practice.order.common.exception.InvalidParamException;
 import dev.practice.order.domain.AbstractEntity;
 import dev.practice.order.domain.item.Item;
@@ -9,7 +10,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.assertj.core.util.Lists;
 
 import java.util.List;
 

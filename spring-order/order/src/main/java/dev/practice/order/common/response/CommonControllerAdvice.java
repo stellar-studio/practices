@@ -1,6 +1,6 @@
 package dev.practice.order.common.response;
 
-import org.assertj.core.util.Lists;
+import com.google.common.collect.Lists;
 import dev.practice.order.common.exception.BaseException;
 import dev.practice.order.common.interceptor.CommonHttpRequestInterceptor;
 import lombok.extern.slf4j.Slf4j;

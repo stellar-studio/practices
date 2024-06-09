@@ -1,5 +1,6 @@
 package dev.practice.order.domain.order.item;
 
+import com.google.common.collect.Lists;
 import dev.practice.order.common.exception.IllegalStatusException;
 import dev.practice.order.common.exception.InvalidParamException;
 import dev.practice.order.domain.AbstractEntity;
@@ -10,7 +11,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import jakarta.persistence.*;
-import org.assertj.core.util.Lists;
 
 import java.util.List;
 

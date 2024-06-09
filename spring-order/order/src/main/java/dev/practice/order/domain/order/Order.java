@@ -1,5 +1,6 @@
 package dev.practice.order.domain.order;
 
+import com.google.common.collect.Lists;
 import dev.practice.order.common.exception.IllegalStatusException;
 import dev.practice.order.common.exception.InvalidParamException;
 import dev.practice.order.common.util.TokenGenerator;
@@ -10,7 +11,6 @@ import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
 import jakarta.persistence.*;
-import org.assertj.core.util.Lists;
 
 import java.time.ZonedDateTime;
 import java.util.List;
