@@ -1,0 +1,26 @@
+server:
+  port: 13030
+  shutdown: graceful
+
+spring:
+  application:
+    name: "rabbitmq"
+  lifecycle:
+    timeout-per-shutdown-phase: "20s"
+  rabbitmq:
+    host: "localhost"
+    port: "5672"
+    username: "admin"
+    password: "local.rabbitmq.pass"
+    addresses: "amqp://admin:local.rabbitmq.pass@localhost"
+    listener:
+      simple:
+        acknowledge-mode: manual
+        prefetch: 1
+
+logging:
+  config: "classpath:logback-local.xml"
+
+config.remote:
+  gateway:
+    host: "https://gateway.example.com/"
